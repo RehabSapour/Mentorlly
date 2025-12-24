@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mentorly</string>
+    <!-- عناوين صفحات البداية -->
+    <string name="onboard_title_welcome">مرحبًا!</string>
+    <string name="onboard_title_guidance">الإرشاد</string>
+    <string name="onboard_title_learning">التعلّم</string>
+
+    <!-- الوصف -->
+    <string name="onboard_desc_welcome">
+        نحن هنا لمساعدتك على تنظيم دراستك، والتغلب على التحديات، وتحقيق أهدافك بثقة
+    </string>
+
+    <string name="onboard_desc_guidance">
+        من اختيار الطريق المناسب إلى اتخاذ قرارات أفضل، أنت لست وحدك.
+    </string>
+
+    <string name="onboard_desc_learning">
+        طوّر مهاراتك العملية، وحافظ على تركيزك، واستعد للنجاح في الحياة العملية.
+    </string>
+    <string name="skip">تجاهل</string>
+
+</resources>

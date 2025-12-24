@@ -1,3 +1,22 @@
 <resources>
+    <!-- OnBoarding Titles -->
     <string name="app_name">Mentorly</string>
+    <string name="onboard_title_welcome">Welcome!</string>
+    <string name="onboard_title_guidance">Guidance</string>
+    <string name="onboard_title_learning">Learning</string>
+    <!-- OnBoarding Descriptions -->
+    <string name="onboard_desc_welcome">
+        We’re here to help you navigate your studies, challenges, and goals with confidence
+    </string>
+
+    <string name="onboard_desc_guidance">
+        From choosing the right path to making better decisions, you’re never alone.
+    </string>
+
+    <string name="onboard_desc_learning">
+        Build practical skills, stay focused, and prepare yourself for real-world success.
+    </string>
+    <string name="skip">Skip</string>
+
+
 </resources>

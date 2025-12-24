@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MentorlyTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
                     val navController = rememberNavController()
                     val context = LocalContext.current
                     val startDestination = "splash"
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity() {
                         startDestination,
                         innerPadding
                     )
+
                 }
             }
         }
