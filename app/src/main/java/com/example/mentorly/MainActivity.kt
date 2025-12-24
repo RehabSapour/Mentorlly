@@ -19,10 +19,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MentorlyTheme {
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//
-//                }
-                // any thing
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
+                }
             }
         }
     }
