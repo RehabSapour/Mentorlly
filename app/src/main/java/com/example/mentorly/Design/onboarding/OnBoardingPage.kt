@@ -80,7 +80,7 @@ fun OnBoardingPageUI(page: OnBoardingPageModel, pagerState: PagerState, onFinish
 
         Card(
             modifier = Modifier.fillMaxWidth()
-                .padding(16.dp).height(300.dp).width(343.dp),
+                .padding(4.dp).height(260.dp).width(343.dp),
             shape= RoundedCornerShape(16.dp),
             colors= CardDefaults.cardColors(
                 containerColor = onBoardingCardBack
