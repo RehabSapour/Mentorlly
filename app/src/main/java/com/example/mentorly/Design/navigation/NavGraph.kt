@@ -4,6 +4,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
@@ -38,22 +42,29 @@ fun NavGraph(
         composable("onboarding") {
             val context = LocalContext.current
 
-            OnBoardingScreen {
+            var navigateToHome by remember { mutableStateOf(false) }
 
+
+            if (navigateToHome) {
+                navController.navigate("home") {
+                    popUpTo("onboarding") { inclusive = true }
+                }
             }
 
-            // لما المستخدم يخلص
-//                LaunchedEffect(Unit) {
-//                    saveOnBoardingState(context)
-//                }
+            OnBoardingScreen(
+                onFinish = {
+
+                    navigateToHome = true
+                }
+            )
 
 
-//                navController.navigate("home") {
-//                    popUpTo("onboarding") {
-//                        inclusive = true
-//                    }
-//                }
+            LaunchedEffect(navigateToHome) {
+                if (navigateToHome) {
+                    saveOnBoardingState(context)
+                }
 
+            }
         }
 
         composable("home") {

@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnBoardingScreen(
-    onFinish: () -> Unit
+    onFinish:  () -> Unit
 ) {
     val pagerState = rememberPagerState(pageCount = { pages.size })
 
