@@ -52,7 +52,9 @@ fun BottomSection(
     pagerState: PagerState,
     onFinish: () -> Unit
 ) {
-    Column {
+    Column(
+        modifier = Modifier.padding(bottom = 100.dp, end = 16.dp, start = 16.dp)
+    ) {
 
         PagerIndicator(pagerState)
 

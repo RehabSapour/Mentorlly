@@ -39,8 +39,9 @@ fun OnBoardingPageUI(page: OnBoardingPageModel){
     Column (
         modifier = Modifier
         .fillMaxSize()
+            .background(onBoardingBack)
         .padding(24.dp)
-            .background(onBoardingBack),
+            ,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
         ) {
@@ -54,7 +55,8 @@ fun OnBoardingPageUI(page: OnBoardingPageModel){
             Spacer(modifier = Modifier.height(24.dp))
 
         Card(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(16.dp).height(334.dp).width(343.dp),
             shape= RoundedCornerShape(16.dp),
             colors= CardDefaults.cardColors(
                 containerColor = onBoardingCardBack
@@ -69,6 +71,7 @@ fun OnBoardingPageUI(page: OnBoardingPageModel){
                 Text(
                     text = stringResource( page.title),
                     fontSize = 20.sp,
+                    textAlign = TextAlign.Center,
                     fontWeight = FontWeight.SemiBold,
                     color=onBoardingTittleText,
                     fontFamily = FontFamily(
