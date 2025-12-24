@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -66,7 +67,7 @@ fun OnBoardingPageUI(page: OnBoardingPageModel){
                 modifier = Modifier.padding(16.dp)
             ) {
                 Text(
-                    text = page.title,
+                    text = stringResource( page.title),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold,
                     color=onBoardingTittleText,
@@ -80,7 +81,7 @@ fun OnBoardingPageUI(page: OnBoardingPageModel){
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
-                    text = page.description,
+                    text = stringResource( page.description),
                     fontSize = 14.sp,
                     textAlign = TextAlign.Center,
                     color=onBoardingDescText,
@@ -90,6 +91,7 @@ fun OnBoardingPageUI(page: OnBoardingPageModel){
                              weight = FontWeight.Normal
                      ))
                 )
+
             }
         }
         }

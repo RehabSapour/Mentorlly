@@ -24,7 +24,7 @@ fun OnBoardingScreen(
             state = pagerState,
             modifier = Modifier.weight(1f)
         ) { page ->
-           // OnBoardingPageUI(pages[page])
+            OnBoardingPageUI(pages[page])
         }
 
         BottomSection(
