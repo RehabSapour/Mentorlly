@@ -1,5 +1,6 @@
 package com.example.mentorly.Design.onboarding
 
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
