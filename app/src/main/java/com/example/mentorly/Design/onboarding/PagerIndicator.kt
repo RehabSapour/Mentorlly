@@ -12,15 +12,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.mentorly.R
-import com.example.mentorly.ui.theme.SplashFirstColor
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -39,7 +39,7 @@ fun PagerIndicator(
                     .size(if (pagerState.currentPage == index) 10.dp else 8.dp)
                     .background(
                         if (pagerState.currentPage == index)
-                            SplashFirstColor
+                            Color.Black
                         else
                             Color.Gray,
                         CircleShape
@@ -60,18 +60,23 @@ fun BottomSection(
 
         PagerIndicator(pagerState)
 
+        val scope = rememberCoroutineScope()
         Button(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             onClick = {
-                if (pagerState.currentPage == pagerState.pageCount - 1) {
-                    onFinish()
+                scope.launch {
+                    if (pagerState.currentPage == pagerState.pageCount - 1) {
+                        onFinish()
+                    } else {
+                        pagerState.animateScrollToPage(
+                            pagerState.currentPage + 1
+                        )
+                    }
                 }
-            },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = SplashFirstColor
-            )
+
+            }
         ) {
             Text(
                 text = if (pagerState.currentPage == pagerState.pageCount - 1)
