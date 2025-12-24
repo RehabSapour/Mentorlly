@@ -16,7 +16,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.mentorly.R
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -52,9 +54,7 @@ fun BottomSection(
     pagerState: PagerState,
     onFinish: () -> Unit
 ) {
-    Column(
-        modifier = Modifier.padding(bottom = 100.dp, end = 16.dp, start = 16.dp)
-    ) {
+    Column() {
 
         PagerIndicator(pagerState)
 
@@ -69,11 +69,10 @@ fun BottomSection(
             }
         ) {
             Text(
-                text = if (pagerState.currentPage ==
-                    pagerState.pageCount - 1)
-                    "Get Started"
+                text = if (pagerState.currentPage == pagerState.pageCount - 1)
+                    stringResource(id = R.string.get_started)
                 else
-                    "Next"
+                    stringResource(id = R.string.next)
             )
         }
     }
