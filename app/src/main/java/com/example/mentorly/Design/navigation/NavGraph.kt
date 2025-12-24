@@ -1,12 +1,15 @@
 package com.example.mentorly.Design.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.mentorly.Design.home.HomeScreen
+import com.example.mentorly.Design.onboarding.SplashScreen
 
 @Composable
 fun NavGraph(
@@ -21,7 +24,7 @@ fun NavGraph(
 
         composable("splash"){
 
-            //SplashScreen(innerPadding)
+            SplashScreen(Modifier.padding(innerPadding))
             navController.navigate("onboarding")
         }
         composable("onboarding") {
