@@ -35,6 +35,9 @@ fun NavGraph(
                 Modifier.padding(innerPadding),
                 onNextClick = {
                     navController.navigate("onboarding")
+                },
+                onSkipClick = {
+                    navController.navigate("home")
                 }
             )
 

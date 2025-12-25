@@ -4,10 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
@@ -25,10 +29,24 @@ class MainActivity : ComponentActivity() {
 
                     val navController = rememberNavController()
                     val context = LocalContext.current
-                    val onboardingCompleted by readOnBoardingState(context).collectAsState(initial = false)
+                    val onboardingCompleted by readOnBoardingState(context).collectAsState(initial = null)
+
                     val startDestination =
-                        if(onboardingCompleted) "home"
-                         else "splash"
+                        when (onboardingCompleted) {
+
+                            null -> {
+                                LoadScreen()
+                                ""
+                            }
+
+                            true -> {
+                                "home"
+                            }
+
+                            false -> {
+                                "onboarding"
+                            }
+                        }
                     NavGraph(
                         navController,
                         startDestination,
@@ -38,5 +56,14 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+}
+@Composable
+fun LoadScreen(){
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        CircularProgressIndicator()
     }
 }
