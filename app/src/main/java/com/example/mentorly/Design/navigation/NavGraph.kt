@@ -13,6 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.mentorly.Design.Role.MentorshipOnboardingScreen
 import com.example.mentorly.Design.data.datastore.saveOnBoardingState
 import com.example.mentorly.Design.home.HomeScreen
 import com.example.mentorly.Design.onboarding.OnBoardingScreen
@@ -49,14 +50,13 @@ fun NavGraph(
 
 
             if (navigateToHome) {
-                navController.navigate("home") {
+                navController.navigate("Role") {
                     popUpTo("onboarding") { inclusive = true }
                 }
             }
 
             OnBoardingScreen(
                 onFinish = {
-
                     navigateToHome = true
                 }
             )
@@ -72,6 +72,9 @@ fun NavGraph(
 
         composable("home") {
             HomeScreen()
+        }
+        composable("Role") {
+            MentorshipOnboardingScreen()
         }
 
     }

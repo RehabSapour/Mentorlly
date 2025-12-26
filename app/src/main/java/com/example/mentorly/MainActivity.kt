@@ -38,7 +38,6 @@ class MainActivity : ComponentActivity() {
                                 LoadScreen()
                                 ""
                             }
-
                             true -> {
                                 "home"
                             }
@@ -49,7 +48,7 @@ class MainActivity : ComponentActivity() {
                         }
                     NavGraph(
                         navController,
-                        startDestination,
+                        "Role",
                         innerPadding
                     )
 

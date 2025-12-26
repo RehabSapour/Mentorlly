@@ -44,7 +44,6 @@ import com.example.mentorly.ui.theme.SplashSecondColor
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.runtime.*
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 
@@ -60,26 +59,26 @@ fun MentorshipOnboardingScreen() {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(24.dp))
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1.2f),
+                .fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
             Image(
                 painter = painterResource(R.drawable.img_3),
                 contentDescription = null,
-                modifier = Modifier.height(290.dp).width(375.dp)
+                modifier = Modifier.height(160.dp).width(200.dp)
             )
         }
-
+        Spacer(modifier = Modifier.height(24.dp))
         // 2. Heading
         Text(
-            text = "What you are joining as ?",
+            text = "Select your role to get started",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(
@@ -93,9 +92,9 @@ fun MentorshipOnboardingScreen() {
                 )
             ),
             color = SplashFirstColor,
-            modifier = Modifier.padding(vertical = 32.dp)
+            modifier = Modifier.padding(vertical = 8.dp)
         )
-
+        Spacer(modifier = Modifier.height(30.dp))
         // 3. Role Selection Cards
         RoleCard3(
             title = "Mentor",
@@ -110,7 +109,7 @@ fun MentorshipOnboardingScreen() {
 
         RoleCard3(
             title = "Student",
-            description = "Learn from experienced mentors.",
+            description = "Learn. Grow. Succeed",
             imageRes = R.drawable.student, // استبدلي بالصورة المناسبة
             isSelected = selectedRole == "Student",
         ) {
@@ -132,94 +131,6 @@ fun MentorshipOnboardingScreen() {
         }
     }
 }
-
-
-
-@Composable
-fun RoleCard2(
-    title: String,
-    description: String,
-    imageRes: Int,
-    isSelected: Boolean,
-    gradientColors: List<Color>,
-    onSelect: () -> Unit
-) {
-    var pressed by remember { mutableStateOf(false) }
-
-    // Scale animation
-    val scale by animateFloatAsState(
-        targetValue = if (isSelected) 1.05f else 1f, // يكبر لو مختار
-        animationSpec = spring()
-    )
-
-    // Reset pressed state after short delay
-    if (pressed) {
-        LaunchedEffect(pressed) {
-            kotlinx.coroutines.delay(150)
-            pressed = false
-        }
-    }
-
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(120.dp)
-            .scale(scale)
-            .clickable {
-                pressed = true
-                onSelect()
-            },
-        shape = RoundedCornerShape(16.dp),
-        border = if (isSelected) {
-            // لو الكارد مختار، نضيف border أبيض أو أي لون يعجبك
-            BorderStroke(4.dp, Color.Black)
-        } else null,
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
-    ) {
-        Box(
-            modifier = Modifier
-                .background(
-                    brush = Brush.horizontalGradient(gradientColors)
-                )
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                // Title + Description
-                Column(
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = title,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = description,
-                        fontSize = 14.sp,
-                        color = Color.White.copy(alpha = 0.9f)
-                    )
-                }
-
-                // Circular image
-                Image(
-                    painter = painterResource(id = imageRes),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(80.dp)
-                        .clip(CircleShape)
-                )
-            }
-        }
-    }
-}
-
 @Composable
 fun RoleCard3(
     title: String,
