@@ -43,13 +43,15 @@ class MainActivity : ComponentActivity() {
                     onboardingCompleted?.let { completed ->
                         isLoading = false
 
+
                         NavGraph(
                             navController = navController,
                             startDestination =
-                                if (completed) "home" else "splash",
+                                if (completed) "Role" else "splash",
                             innerPadding
                         )
                     }
+
 
 
                 }

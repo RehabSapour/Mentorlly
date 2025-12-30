@@ -3,17 +3,13 @@ package com.example.mentorly.Design.navigation
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.mentorly.Design.Role.MentorshipOnboardingScreen
 import com.example.mentorly.Design.data.datastore.saveOnBoardingState
 import com.example.mentorly.Design.home.HomeScreen
 import com.example.mentorly.Design.onboarding.OnBoardingScreen
@@ -43,7 +39,7 @@ fun NavGraph(
                 onSkipClick = {
                     scope.launch {
                         saveOnBoardingState(context)
-                        navController.navigate("home") {
+                        navController.navigate("Role") {
                             popUpTo("splash") { inclusive = true }
                             launchSingleTop=true
                         }
@@ -54,26 +50,37 @@ fun NavGraph(
         }
         composable("onboarding") {
             val context = LocalContext.current
+
             val scope = rememberCoroutineScope()
 
             OnBoardingScreen(
                 onFinish = {
                     scope.launch {
                         saveOnBoardingState(context)
-                        navController.navigate("home") {
+                        navController.navigate("Role") {
                             popUpTo("splash") { inclusive = true }
-                            launchSingleTop=true
+                            launchSingleTop = true
                         }
                     }
-                }
-            )
-
-//
-        }
+                })
+            }
 
         composable("home") {
             HomeScreen()
         }
+        composable("Role") {
+            MentorshipOnboardingScreen (
+                selectRole={
+                    navController.navigate("home")
+                }
+            )
+        }
+
+
+
+
+
+
 
     }
 }
