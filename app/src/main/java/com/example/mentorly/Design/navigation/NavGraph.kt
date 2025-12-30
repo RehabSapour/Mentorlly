@@ -7,6 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -17,6 +18,7 @@ import com.example.mentorly.Design.data.datastore.saveOnBoardingState
 import com.example.mentorly.Design.home.HomeScreen
 import com.example.mentorly.Design.onboarding.OnBoardingScreen
 import com.example.mentorly.Design.onboarding.SplashScreen
+import kotlinx.coroutines.launch
 
 @Composable
 fun NavGraph(
@@ -30,6 +32,8 @@ fun NavGraph(
     ) {
 
         composable("splash") {
+            val context = LocalContext.current
+            val scope = rememberCoroutineScope()
 
             SplashScreen(
                 Modifier.padding(innerPadding),
@@ -37,37 +41,34 @@ fun NavGraph(
                     navController.navigate("onboarding")
                 },
                 onSkipClick = {
-                    navController.navigate("home")
+                    scope.launch {
+                        saveOnBoardingState(context)
+                        navController.navigate("home") {
+                            popUpTo("splash") { inclusive = true }
+                            launchSingleTop=true
+                        }
+                    }
                 }
             )
 
         }
         composable("onboarding") {
             val context = LocalContext.current
-
-            var navigateToHome by remember { mutableStateOf(false) }
-
-
-            if (navigateToHome) {
-                navController.navigate("home") {
-                    popUpTo("onboarding") { inclusive = true }
-                }
-            }
+            val scope = rememberCoroutineScope()
 
             OnBoardingScreen(
                 onFinish = {
-
-                    navigateToHome = true
+                    scope.launch {
+                        saveOnBoardingState(context)
+                        navController.navigate("home") {
+                            popUpTo("splash") { inclusive = true }
+                            launchSingleTop=true
+                        }
+                    }
                 }
             )
 
-
-            LaunchedEffect(navigateToHome) {
-                if (navigateToHome) {
-                    saveOnBoardingState(context)
-                }
-
-            }
+//
         }
 
         composable("home") {
