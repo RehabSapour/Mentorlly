@@ -44,16 +44,24 @@ import com.example.mentorly.ui.theme.SplashSecondColor
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
-
-
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.mentorly.Design.data.datastore.saveOnBoardingState
+import com.example.mentorly.MyApp
+import com.example.mentorly.ViewModel
+import kotlinx.coroutines.launch
 
 
 //@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun MentorshipOnboardingScreen(selectRole: () -> Unit) {
     var selectedRole by remember { mutableStateOf<String?>(null) }
+    val context = LocalContext.current
+
+    val viewModel: ViewModel = viewModel()
 
     Column(
         modifier = Modifier
@@ -132,6 +140,9 @@ fun MentorshipOnboardingScreen(selectRole: () -> Unit) {
             Text(text = "Continue", fontSize = 18.sp, color = Color.White)
         }
     }
+//    LaunchedEffect(Unit) {
+//        viewModel.saveOnBoarding(context)
+//    }
 }
 @Composable
 fun RoleCard3(
